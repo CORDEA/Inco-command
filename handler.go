@@ -87,6 +87,9 @@ func (h *Handler) cursorUp(g *gocui.Gui, v *gocui.View) error {
 		return nil
 	}
 	x, y = v.Origin()
+	if y == 0 {
+		return nil
+	}
 	if err = v.SetOrigin(x, y-1); err != nil {
 		return err
 	}
