@@ -102,11 +102,12 @@ func (h *Handler) selectLine(g *gocui.Gui, v *gocui.View) error {
 		return nil
 	}
 
+	_, oy := v.Origin()
 	v.Clear()
-	if strings.HasPrefix(h.titles[y], SelectedMark) {
-		h.titles[y] = strings.TrimLeft(h.titles[y], SelectedMark)
+	if strings.HasPrefix(h.titles[y+oy], SelectedMark) {
+		h.titles[y+oy] = strings.TrimLeft(h.titles[y+oy], SelectedMark)
 	} else {
-		h.titles[y] = SelectedMark + h.titles[y]
+		h.titles[y+oy] = SelectedMark + h.titles[y+oy]
 	}
 
 	for i := range h.titles {
